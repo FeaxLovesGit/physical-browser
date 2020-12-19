@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+    <style>
+    .button {
+        padding: 15px 32px;
+        text-align: center;
+        margin: 10px 10px;
+    }
+    </style>
+    <body>
+            <input value="Get current WiFi name" type="button" class="button"
+                   id="btnSubmit1" onclick="javascript: showCurrentWifi();" />
+            <input value="Scan available WiFis" type="button" class="button"
+                   id="btnSubmit2" onclick="javascript: startScanForAvailableWifis();" />
+    </body>
+
+    <div id="availableSSIDs"></div>
+
+    <script type="text/javascript">
+
+       function showCurrentWifi()
+       {
+          var ssid = androidInterface.getWiFiSSID();
+          androidInterface.showToast("Current SSID is " + ssid);
+       }
+
+       function startScanForAvailableWifis()
+       {
+          androidInterface.startScanForAvailableWiFis();
+          androidInterface.showToast("Scan is started ");
+       }
+
+       function showAvailableWifis(ssids)
+       {
+          var ssidsObject = document.getElementById("availableSSIDs");
+          ssidsObject.innerText = ssids;
+       }
+
+    </script>
+</html>
